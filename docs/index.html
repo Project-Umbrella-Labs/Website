@@ -342,6 +342,9 @@
   </footer>
 
   <script>
+    if (location.protocol === 'http:') {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
     document.getElementById('year').textContent = new Date().getFullYear();
     const drawer = document.getElementById('drawer');
     const burger = document.getElementById('hamburger');
