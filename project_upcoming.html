@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classified | Project Umbrella</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- DARK THEME VARIABLES --- */
+        :root { --neon-green: #00bd56; --alert-red: #ff3333; --void-black: #0a0a0a; --panel-grey: #161616; --text-white: #e0e0e0; --text-muted: #888888; --border-color: #333333; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--void-black); color: var(--text-white); line-height: 1.6; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: -2; pointer-events: none; }
+        body::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); background-size: 100% 4px; z-index: -1; pointer-events: none; }
+        .mono { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--alert-red); letter-spacing: 1px; text-transform: uppercase; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 5px 5%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo-container { display: flex; gap: 15px; padding-top: 15px; font-weight: 900; font-size: 1.8rem; text-decoration: none; color: white; letter-spacing: -1px; }
+        
+        .back-link { text-decoration: none; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 5px; font-family: 'Roboto Mono', monospace; transition: color 0.3s; }
+        .back-link:hover { color: var(--alert-red); }
+
+        .classified-container { max-width: 800px; margin: 100px auto; text-align: center; border: 2px solid var(--alert-red); padding: 50px; background: rgba(255, 0, 0, 0.05); position: relative; }
+        .classified-container::before { content: "TOP SECRET // NOFORN"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--void-black); padding: 0 10px; color: var(--alert-red); font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 0.8rem; }
+        h1 { font-size: 4rem; color: white; margin-bottom: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: -2px; }
+        .redacted { background-color: white; color: white; padding: 0 5px; user-select: none; }
+        .data-table { text-align: left; font-family: 'Roboto Mono', monospace; border-top: 1px solid var(--alert-red); padding-top: 20px; margin-top: 40px; color: var(--text-muted); }
+        .data-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #333; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        footer { background: #050505; color: white; padding: 60px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid var(--border-color); margin-top: 60px; text-align: left; }
+        .footer-logo { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: white; }
+        .footer-logo span { color: var(--neon-green); }
+        .footer-links a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--alert-red); padding-left: 5px; }
+        
+        @media (max-width: 768px) { footer { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo-container">
+            <span>PROJECT UMBRELLA</span>
+            </a>
+        <a href="index.html" class="back-link">&larr; [ ABORT ]</a>
+    </nav>
+
+    <div class="classified-container">
+        <p class="mono">/// CLEARANCE LEVEL 4 REQUIRED</p>
+        <h1 style="color: var(--alert-red);">CLASSIFIED</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #fff;">
+            This project is currently under strict non-disclosure. <br>
+            Release date scheduled for <span style="color:var(--alert-red)">Q1 2026</span>.
+        </p>
+
+        <div class="data-table">
+            <div class="data-row">
+                <span>PROJECT ID:</span>
+                <span class="redacted">OMEGA_X</span>
+            </div>
+            <div class="data-row">
+                <span>OBJECTIVE:</span>
+                <span class="redacted">HYPER KINETIC PROPULSION</span>
+            </div>
+            <div class="data-row">
+                <span>LEAD ENGINEER:</span>
+                <span class="redacted">LUCA</span>
+            </div>
+            <div class="data-row" style="border-bottom: none;">
+                <span>STATUS:</span>
+                <span style="color:var(--alert-red); animation: blink 1s infinite;">AWAITING APPROVAL</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <div class="footer-logo">PROJECT <span>UMBRELLA</span></div>
+            <p style="max-width: 300px; color: #666; font-size: 0.9rem;">Engineering the future through rigorous testing and innovative design.</p>
+        </div>
+        <div class="footer-links">
+            <p class="mono" style="color:white; margin-bottom: 15px;">> CONTACT UPLINK</p>
+            <a href="mailto:info@projectumbrellalabs.com">info@projectumbrellalabs.com</a>
+            <a href="https://www.instagram.com/umbrellaproject_unsw/" target="_blank">Instagram</a>
+            <a href="https://github.com/Project-Umbrella-Labs" target="_blank">GitHub Repository</a>
+            <a href="https://www.linkedin.com/company/projectumbrellalabs/">LinkedIn</a>
+            <a href="contact.html" style="color: var(--neon-green);">Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Uplink | Project Umbrella</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- DARK THEME VARIABLES --- */
+        :root {
+            --neon-green: #00bd56;
+            --dim-green: rgba(0, 189, 86, 0.1);
+            --void-black: #0a0a0a;
+            --panel-grey: #161616;
+            --text-white: #e0e0e0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--void-black);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* TECHNICAL GRID BACKGROUND */
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: -2; pointer-events: none; }
+        body::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); background-size: 100% 4px; z-index: -1; pointer-events: none; }
+
+        .mono { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--neon-green); letter-spacing: 1px; text-transform: uppercase; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 5px 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .logo-container {
+            display: flex; gap: 15px;
+            padding-top: 15px;
+            font-weight: 900; font-size: 1.8rem;
+            text-decoration: none; color: white;
+            letter-spacing: -1px;
+        }
+
+        .nav-center { display: flex; gap: 40px; }
+
+        .nav-center a {
+            text-decoration: none; color: var(--text-muted);
+            font-weight: 600; font-size: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            transition: color 0.3s;
+        }
+
+        .nav-center a:hover, .nav-center a.active { color: var(--neon-green); }
+
+        /* --- CONTACT SECTION --- */
+        .contact-container { max-width: 1000px; margin: 80px auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; font-weight: 800; }
+        .form-box { background: var(--panel-grey); padding: 40px; border: 1px solid var(--border-color); position: relative; }
+        .form-box::before { content: ""; position: absolute; top: -1px; left: -1px; width: 20px; height: 20px; border-top: 2px solid var(--neon-green); border-left: 2px solid var(--neon-green); }
+        .form-box::after { content: ""; position: absolute; bottom: -1px; right: -1px; width: 20px; height: 20px; border-bottom: 2px solid var(--neon-green); border-right: 2px solid var(--neon-green); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-family: 'Roboto Mono', monospace; color: var(--neon-green); font-size: 0.8rem; margin-bottom: 8px; }
+        input, textarea { width: 100%; background: #000; border: 1px solid var(--border-color); padding: 15px; color: white; font-family: 'Roboto Mono', monospace; outline: none; transition: border-color 0.3s; }
+        input:focus, textarea:focus { border-color: var(--neon-green); box-shadow: 0 0 10px rgba(0, 189, 86, 0.2); }
+        button { width: 100%; padding: 15px; background: var(--neon-green); color: black; font-weight: 800; border: none; cursor: pointer; font-family: 'Roboto Mono', monospace; text-transform: uppercase; transition: all 0.3s; }
+        button:hover { background: white; box-shadow: 0 0 15px white; }
+
+        /* --- FOOTER --- */
+        footer { background: #050505; color: white; padding: 60px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid var(--border-color); margin-top: 100px; }
+        .footer-logo { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: white; }
+        .footer-logo span { color: var(--neon-green); }
+        .footer-links a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--neon-green); padding-left: 5px; }
+
+        @media (max-width: 768px) { .contact-container { grid-template-columns: 1fr; } .nav-center { display: none; } footer { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-container">
+            <span>PROJECT UMBRELLA</span>
+            </a>
+        <div class="nav-center">
+            <a href="index.html#about">// ABOUT</a>
+            <a href="index.html#projects">// PROJECTS</a>
+            <a href="index.html#sponsors">// SPONSORS</a>
+            <a href="contact.html" class="active">// CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <p class="mono">> INITIATING SECURE COMMS</p>
+            <h1>Establish <br><span style="color:var(--neon-green)">Uplink</span></h1>
+            <p style="color: #888; margin-bottom: 30px;">
+                Reachout for all General Inquiries, Sponsorship/Collaborations and all other means.
+            </p>
+            
+            <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 30px;">
+                <p class="mono" style="margin-bottom: 10px;">BASE LOCATION</p>
+                <p style="color:white; margin-bottom: 30px;">Sydney, New South Wales<br>Australia</p>
+                
+                <p class="mono" style="margin-bottom: 10px;">DIRECT LINE</p>
+                <p style="color:white;">info@projectumbrellalabs.com</p>
+            </div>
+        </div>
+
+        <div class="form-box">
+            <form action="https://formspree.io/f/mzznjnab" method="POST">
+                <div class="form-group">
+                    <label>OPERATOR NAME</label>
+                    <input type="text" name="name" placeholder="Enter name" required>
+                </div>
+            
+                <div class="form-group">
+                    <label>FREQUENCY (EMAIL)</label>
+                    <input type="email" name="email" placeholder="Enter email address" required>
+                </div>
+            
+                <div class="form-group">
+                    <label>TRANSMISSION DATA (MESSAGE)</label>
+                    <textarea name="message" rows="5" placeholder="Enter your message..." required></textarea>
+                </div>
+            
+                <button type="submit">TRANSMIT DATA</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <div class="footer-logo">PROJECT <span>UMBRELLA</span></div>
+            <p style="max-width: 300px; color: #666; font-size: 0.9rem;">Engineering the future through rigorous testing and innovative design.</p>
+        </div>
+        <div class="footer-links">
+            <p class="mono" style="color:white; margin-bottom: 15px;">> CONTACT UPLINK</p>
+            <a href="mailto:info@projectumbrellalabs.com">info@projectumbrellalabs.com</a>
+            <a href="https://www.instagram.com/umbrellaproject_unsw/" target="_blank">Instagram</a>
+            <a href="https://github.com/Project-Umbrella-Labs" target="_blank">GitHub Repository</a>
+            <a href="https://www.linkedin.com/company/projectumbrellalabs/">LinkedIn</a>
+            <a href="contact.html" style="color: var(--neon-green);">Contact Us</a>
+        </div>
+    </footer>
+
+</body>
+</html>
