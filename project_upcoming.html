@@ -7,48 +7,330 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* --- DARK THEME VARIABLES --- */
-        :root { --neon-green: #00bd56; --alert-red: #ff3333; --void-black: #0a0a0a; --panel-grey: #161616; --text-white: #e0e0e0; --text-muted: #888888; --border-color: #333333; }
+        :root {
+            --neon-green: #00bd56;
+            --alert-red: #ff3333;
+            --void-black: #0a0a0a;
+            --panel-grey: #161616;
+            --text-white: #e0e0e0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--void-black); color: var(--text-white); line-height: 1.6; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 50px 50px; z-index: -2; pointer-events: none; }
-        body::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); background-size: 100% 4px; z-index: -1; pointer-events: none; }
-        .mono { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--alert-red); letter-spacing: 1px; text-transform: uppercase; }
         
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 5px 5%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
-        .logo-container { display: flex; gap: 15px; padding-top: 15px; font-weight: 900; font-size: 1.8rem; text-decoration: none; color: white; letter-spacing: -1px; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--void-black); 
+            color: var(--text-white); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        /* Prevent image overflow */
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
         
-        .back-link { text-decoration: none; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 5px; font-family: 'Roboto Mono', monospace; transition: color 0.3s; }
+        /* Grid Background */
+        body::before { 
+            content: ""; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); 
+            background-size: 50px 50px; 
+            z-index: -2; 
+            pointer-events: none; 
+        }
+        
+        /* Scanline Overlay */
+        body::after { 
+            content: " "; 
+            display: block; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            bottom: 0; 
+            right: 0; 
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); 
+            background-size: 100% 4px; 
+            z-index: -1; 
+            pointer-events: none; 
+        }
+        
+        .mono { 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 0.85rem; 
+            color: var(--alert-red); 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+        }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 5px 5%; 
+            background: rgba(10, 10, 10, 0.95); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid var(--border-color); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        
+        .logo-container { 
+            display: flex; 
+            gap: 15px; 
+            padding-top: 15px;
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            text-decoration: none; 
+            color: white; 
+            letter-spacing: -1px; 
+        }
+        
+        .back-link { 
+            text-decoration: none; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            font-family: 'Roboto Mono', monospace; 
+            transition: color 0.3s; 
+            white-space: nowrap;
+        }
+        
         .back-link:hover { color: var(--alert-red); }
 
-        .classified-container { max-width: 800px; margin: 100px auto; text-align: center; border: 2px solid var(--alert-red); padding: 50px; background: rgba(255, 0, 0, 0.05); position: relative; }
-        .classified-container::before { content: "TOP SECRET // NOFORN"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--void-black); padding: 0 10px; color: var(--alert-red); font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 0.8rem; }
-        h1 { font-size: 4rem; color: white; margin-bottom: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: -2px; }
-        .redacted { background-color: white; color: white; padding: 0 5px; user-select: none; }
-        .data-table { text-align: left; font-family: 'Roboto Mono', monospace; border-top: 1px solid var(--alert-red); padding-top: 20px; margin-top: 40px; color: var(--text-muted); }
-        .data-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #333; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-        footer { background: #050505; color: white; padding: 60px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid var(--border-color); margin-top: 60px; text-align: left; }
-        .footer-logo { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: white; }
-        .footer-logo span { color: var(--neon-green); }
-        .footer-links a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; font-family: 'Roboto Mono', monospace; font-size: 0.9rem; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--alert-red); padding-left: 5px; }
+        /* --- CLASSIFIED CONTAINER --- */
+        .classified-container { 
+            max-width: 800px; 
+            margin: 100px auto; 
+            text-align: center; 
+            border: 2px solid var(--alert-red); 
+            padding: 50px; 
+            background: rgba(255, 0, 0, 0.05); 
+            position: relative; 
+        }
         
-        @media (max-width: 768px) { footer { grid-template-columns: 1fr; } }
+        .classified-container::before { 
+            content: "TOP SECRET // NOFORN"; 
+            position: absolute; 
+            top: -12px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: var(--void-black); 
+            padding: 0 10px; 
+            color: var(--alert-red); 
+            font-family: 'Roboto Mono', monospace; 
+            font-weight: 700; 
+            font-size: 0.8rem; 
+        }
+        
+        h1 { 
+            font-size: 4rem; 
+            color: var(--alert-red); 
+            margin-bottom: 20px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: -2px; 
+        }
+        
+        .classified-text {
+            font-size: 1.2rem; 
+            margin-bottom: 40px; 
+            color: #fff;
+        }
+        
+        .redacted { 
+            background-color: white; 
+            color: white; 
+            padding: 0 5px; 
+            user-select: none; 
+        }
+        
+        .data-table { 
+            text-align: left; 
+            font-family: 'Roboto Mono', monospace; 
+            border-top: 1px solid var(--alert-red); 
+            padding-top: 20px; 
+            margin-top: 40px; 
+            color: var(--text-muted); 
+        }
+        
+        .data-row { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 10px 0; 
+            border-bottom: 1px dashed #333; 
+        }
+        
+        @keyframes blink { 
+            0% { opacity: 1; } 
+            50% { opacity: 0.3; } 
+            100% { opacity: 1; } 
+        }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: #050505; 
+            color: white; 
+            padding: 60px 5%; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
+            border-top: 1px solid var(--border-color); 
+            margin-top: 60px; 
+        }
+        
+        .footer-logo { 
+            font-size: 2rem; 
+            font-weight: 800; 
+            margin-bottom: 20px; 
+            color: white; 
+        }
+        
+        .footer-logo span { color: var(--neon-green); }
+        
+        .footer-links a { 
+            display: block; 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            margin-bottom: 10px; 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 0.9rem; 
+            transition: color 0.3s; 
+        }
+        
+        .footer-links a:hover { 
+            color: var(--alert-red); 
+            padding-left: 5px; 
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 800px) {
+            /* NAV */
+            nav { 
+                flex-direction: column; 
+                padding: 15px 5%; 
+                align-items: center; 
+                gap: 15px;
+            }
+            
+            .logo-container { 
+                padding-top: 0 !important; 
+                font-size: 1.5rem;
+            }
+            
+            .back-link {
+                font-size: 0.8rem;
+            }
+
+            /* CLASSIFIED CONTAINER */
+            .classified-container { 
+                margin: 40px 5%;
+                padding: 30px 20px;
+            }
+            
+            .classified-container::before {
+                font-size: 0.65rem;
+                padding: 0 8px;
+            }
+            
+            h1 { 
+                font-size: 2.5rem; 
+            }
+            
+            .classified-text {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            
+            .mono {
+                font-size: 0.75rem;
+            }
+            
+            .data-table {
+                font-size: 0.85rem;
+            }
+            
+            .data-row {
+                flex-direction: column;
+                gap: 5px;
+                padding: 12px 0;
+            }
+
+            /* FOOTER */
+            footer { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                padding: 40px 5%;
+            }
+            
+            .footer-logo { 
+                font-size: 1.6rem;
+                margin-bottom: 15px; 
+            }
+            
+            footer p {
+                margin: 0 auto 20px auto;
+            }
+            
+            .footer-links { 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .classified-container {
+                margin: 30px 15px;
+                padding: 25px 15px;
+            }
+            
+            .classified-container::before {
+                font-size: 0.6rem;
+                white-space: nowrap;
+            }
+            
+            h1 { 
+                font-size: 2rem; 
+                letter-spacing: -1px;
+            }
+            
+            .classified-text {
+                font-size: 0.9rem;
+            }
+            
+            .data-table {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
         <a href="index.html" class="logo-container">
             <span>PROJECT UMBRELLA</span>
-            </a>
+        </a>
         <a href="index.html" class="back-link">&larr; [ ABORT ]</a>
     </nav>
 
     <div class="classified-container">
         <p class="mono">/// CLEARANCE LEVEL 4 REQUIRED</p>
-        <h1 style="color: var(--alert-red);">CLASSIFIED</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #fff;">
+        <h1>CLASSIFIED</h1>
+        <p class="classified-text">
             This project is currently under strict non-disclosure. <br>
             Release date scheduled for <span style="color:var(--alert-red)">Q1 2026</span>.
         </p>
