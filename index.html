@@ -129,7 +129,7 @@
             color: var(--void-black); 
             -webkit-text-stroke: 0;
             z-index: 1; 
-            letter-spacing: 6px; 
+            letter-spacing: 6px;
         }
         
         .hero p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
@@ -405,8 +405,8 @@
 
         @media (max-width: 800px) {
             /* NAV */
-            nav { flex-direction: column; padding: 15px 5%; }
-            .logo-container { padding-top: 0; margin-bottom: 20px; }
+            nav { flex-direction: column; padding: 15px 5%; align-items: center; }
+            .logo-container { padding-top: 0 !important; margin-bottom: 20px; }
             .nav-center { flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; }
             .nav-center a { font-size: 0.9rem; }
 
@@ -436,6 +436,12 @@
             }
             .hero h1 span::after {
                  letter-spacing: 2px;
+                 /* Center the fill text on mobile */
+                 left: 50%;
+                 top: 50%;
+                 transform: translate(-50%, -50%);
+                 width: 100%;
+                 text-align: center;
             }
             
             .hero-image { 
