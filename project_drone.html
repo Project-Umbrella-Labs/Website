@@ -9,6 +9,7 @@
         /* --- DARK THEME VARIABLES --- */
         :root {
             --neon-green: #00bd56;
+            --neon-cyan: #00f0ff;
             --dim-green: rgba(0, 189, 86, 0.1);
             --void-black: #0a0a0a;
             --panel-grey: #161616;
@@ -37,12 +38,23 @@
         
         /* Grid Background */
         body::before { 
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); 
-            background-size: 50px 50px; 
+            content: ""; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-image: linear-gradient(rgba(0, 189, 86, 0.03) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0, 189, 86, 0.03) 1px, transparent 1px); 
+            background-size: 40px 40px; 
             z-index: -2; 
             pointer-events: none; 
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
         
         /* Scanline Overlay */
@@ -50,7 +62,10 @@
             content: " "; 
             display: block; 
             position: fixed; 
-            top: 0; left: 0; bottom: 0; right: 0; 
+            top: 0; 
+            left: 0; 
+            bottom: 0; 
+            right: 0; 
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); 
             background-size: 100% 4px; 
             z-index: -1; 
@@ -108,35 +123,90 @@
         .project-hero { 
             background-size: cover; 
             background-position: center; 
-            min-height: 50vh; 
+            min-height: 60vh; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             text-align: center; 
             color: white; 
-            border-bottom: 1px solid var(--border-color); 
+            border-bottom: 2px solid var(--neon-green); 
             position: relative;
-            padding: 40px 5%;
+            padding: 60px 5%;
+            overflow: hidden;
+        }
+
+        /* Animated circuit lines */
+        .project-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 0%, var(--neon-green) 50%, transparent 100%);
+            opacity: 0.1;
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         /* Version 2 Hero Image */
         .hero-v2 { 
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/Drone.jpg'); 
+            background-image: 
+                linear-gradient(135deg, rgba(0, 189, 86, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%),
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
+                url('assets/Drone.jpg'); 
         }
         
         /* Version 1 Hero Image */
         .hero-v1 { 
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('assets/Drone_Render.jpg'); 
-            border-top: 1px solid var(--neon-green); 
+            background-image: 
+                linear-gradient(135deg, rgba(136, 136, 136, 0.05) 0%, rgba(10, 10, 10, 0.95) 100%),
+                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), 
+                url('assets/Drone_Render.jpg'); 
+            border-top: 1px solid #555;
+            border-bottom: 1px solid #555;
         }
 
         .project-hero h1 { 
             font-size: 3.5rem; 
-            margin-bottom: 10px; 
-            max-width: 800px; 
+            margin-bottom: 15px; 
+            max-width: 900px; 
             text-transform: uppercase; 
             font-weight: 800; 
             letter-spacing: -1px;
+            text-shadow: 0 0 30px rgba(0, 189, 86, 0.5);
+        }
+
+        /* Glowing status badge */
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 189, 86, 0.1);
+            border: 1px solid var(--neon-green);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .status-badge.retired {
+            background: rgba(136, 136, 136, 0.1);
+            border-color: #555;
+            animation: none;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--neon-green); }
+            50% { box-shadow: 0 0 20px var(--neon-green), 0 0 30px var(--neon-green); }
         }
         
         /* --- CONTENT SECTIONS --- */
@@ -155,6 +225,18 @@
             color: white; 
             text-transform: uppercase; 
             font-weight: 800; 
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-col h2::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--neon-green);
         }
         
         .main-col p { 
@@ -168,8 +250,22 @@
         }
         
         .main-col ul li { 
-            margin-bottom: 10px; 
+            margin-bottom: 15px; 
             color: var(--text-white); 
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .main-col ul li::before {
+            content: "▸";
+            position: absolute;
+            left: -15px;
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        .main-col ul li strong {
+            color: var(--neon-cyan);
         }
         
         .main-col h3 { 
@@ -178,38 +274,50 @@
             font-weight: 700; 
             margin-top: 40px; 
             margin-bottom: 15px; 
+            font-size: 1.3rem;
+            letter-spacing: 1px;
         }
         
         /* --- SPECS BOX --- */
         .specs-box { 
-            background: var(--panel-grey); 
+            background: linear-gradient(135deg, rgba(0, 189, 86, 0.05) 0%, var(--panel-grey) 100%);
             padding: 30px; 
             border: 1px solid var(--border-color); 
             border-top: 4px solid var(--neon-green); 
             position: sticky;
             top: 120px;
+            box-shadow: 0 0 30px rgba(0, 189, 86, 0.1);
         }
         
         .specs-box h3 {
-            margin-bottom: 20px; 
+            margin-bottom: 25px; 
             color: white;
             text-transform: uppercase;
             font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
         }
         
         .spec-row { 
             display: flex; 
             justify-content: space-between; 
             padding: 15px 0; 
-            border-bottom: 1px solid #333; 
+            border-bottom: 1px solid rgba(0, 189, 86, 0.2); 
             gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .spec-row:hover {
+            padding-left: 10px;
+            border-left: 3px solid var(--neon-green);
         }
         
         .spec-label { 
             font-weight: 700; 
             color: var(--text-muted); 
-            font-size: 0.9rem; 
+            font-size: 0.85rem; 
             text-transform: uppercase; 
+            letter-spacing: 1px;
         }
         
         .spec-val { 
@@ -217,6 +325,7 @@
             color: var(--neon-green); 
             font-weight: 500; 
             text-align: right;
+            font-size: 0.9rem;
         }
 
         /* --- FOOTER --- */
@@ -287,8 +396,8 @@
 
             /* HERO */
             .project-hero {
-                min-height: 40vh;
-                padding: 30px 5%;
+                min-height: 50vh;
+                padding: 40px 5%;
             }
             
             .project-hero h1 { 
@@ -298,6 +407,11 @@
             
             .project-hero .mono {
                 font-size: 0.75rem;
+            }
+
+            .status-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
             }
 
             /* CONTENT */
@@ -327,6 +441,12 @@
                 flex-direction: column;
                 gap: 5px;
                 padding: 12px 0;
+            }
+
+            .spec-row:hover {
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 2px solid var(--neon-green);
             }
             
             .spec-val {
@@ -381,8 +501,10 @@
     </nav>
 
     <div class="project-hero hero-v2">
-        <div>
-            <p class="mono">STATUS: ACTIVE // ITERATION 2</p>
+        <div class="hero-content">
+            <div class="status-badge">
+                <p class="mono">STATUS: ACTIVE // ITERATION 2</p>
+            </div>
             <h1>Atmospheric Drone Mk II</h1>
         </div>
     </div>
@@ -395,10 +517,10 @@
             <p>Utilizing the <strong>Jetson Orin Nano (8GB)</strong>, the drone performs on-board image processing for crop health analysis and weather pattern recognition without reliance on ground station telemetry.</p>
             <h3>Mk II Systems Integration</h3>
             <ul>
-                <li>Real-time NDVI mapping via Jetson AI edge computing.</li>
-                <li>High-efficiency power train using HobbyWing 65A ESCs.</li>
-                <li>Redundant navigation via Matek H7A3-SLIM flight controller.</li>
-                <li>Carbon Fiber reinforced arms for increased rigidity.</li>
+                <li><strong>Real-time NDVI mapping</strong> via Jetson AI edge computing.</li>
+                <li><strong>High-efficiency power train</strong> using HobbyWing 65A ESCs.</li>
+                <li><strong>Redundant navigation</strong> via Matek H7A3-SLIM flight controller.</li>
+                <li><strong>Carbon Fiber reinforced arms</strong> for increased rigidity.</li>
             </ul>
         </div>
         <div class="sidebar">
@@ -419,9 +541,11 @@
     </div>
 
     <div class="project-hero hero-v1">
-        <div>
-            <p class="mono" style="color: #888;">STATUS: RETIRED // ITERATION 1</p>
-            <h1 style="color: #aaa;">Prototype Mk I</h1>
+        <div class="hero-content">
+            <div class="status-badge retired">
+                <p class="mono" style="color: #888;">STATUS: RETIRED // ITERATION 1</p>
+            </div>
+            <h1 style="color: #aaa; text-shadow: none;">Prototype Mk I</h1>
         </div>
     </div>
 
@@ -439,7 +563,7 @@
             </ul>
         </div>
         <div class="sidebar">
-            <div class="specs-box" style="border-top: 4px solid #555;">
+            <div class="specs-box" style="border-top: 4px solid #555; background: var(--panel-grey); box-shadow: none;">
                 <h3 style="color:#aaa;">Mk I Legacy Specs</h3>
                 <div class="spec-row"><span class="spec-label">CONTROLLER</span><span class="spec-val" style="color:#888;">Pixhawk 4</span></div>
                 <div class="spec-row"><span class="spec-label">MOTORS</span><span class="spec-val" style="color:#888;">Generic 2205</span></div>
@@ -466,4 +590,3 @@
     </footer>
 </body>
 </html>
-
