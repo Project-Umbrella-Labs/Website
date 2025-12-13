@@ -135,21 +135,6 @@
             font-weight: 800; 
             letter-spacing: -1px;
         }
-
-        /* --- TERMINAL WIDGET STYLE --- */
-        .terminal-widget {
-            background-color: #000;
-            border: 1px solid #333;
-            padding: 20px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.8rem;
-            margin: 30px 0;
-            border-left: 3px solid var(--neon-green);
-        }
-        .term-header { color: var(--text-muted); margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px;}
-        .term-line { display: flex; gap: 10px; margin-bottom: 5px; }
-        .term-prompt { color: var(--neon-green); }
-        .term-out { color: #ccc; }
         
         /* --- CONTENT SECTIONS --- */
         .content-wrapper { 
@@ -402,51 +387,31 @@
     <div class="content-wrapper">
         <div class="main-col">
             <p class="mono">/// SYSTEM OVERVIEW</p>
-            <h2>Hybrid Neuro-Muscular Interface</h2>
-            <p>The Mk I platform enables accessible human augmentation by fusing rapid-response Electromyography (EMG) with cognitive state monitoring (EEG). Unlike cost-prohibitive industrial systems, the Mk I utilizes a distributed servo architecture to achieve shoulder-to-finger articulation.</p>
-            <p>The structural core combines <strong>3D Printed PETG</strong> topology-optimized parts with <strong>Aluminum Flat Bar</strong> reinforcement, creating a chassis that is both affordable to manufacture and rigid enough to support high-torque actuation at the shoulder joint.</p>
+            <h2>Affordable Human Augmentation</h2>
+            <p>We are building a functional exoskeleton arm that is affordable and replicable. Instead of using expensive industrial components, this project fuses muscle sensors (EMG) for speed with brainwave sensors (EEG) for safety.</p>
+            <p>The frame is built using a combination of <strong>3D Printed parts</strong> and <strong>Aluminum Flat Bar</strong> available at local hardware stores. This hybrid structure gives us the strength of metal to support heavy motors, but keeps the cost low.</p>
             
-            <h3>Control Architecture</h3>
-            <p>To overcome the latency of pure brain-computer interfaces (BCI), the Mk I employs a hybrid approach:</p>
+            <h3>How It Works</h3>
+            <p>To make the arm feel natural without costing thousands of dollars, we split the control system in two:</p>
             <ul>
-                <li><strong>EEG Gating (NeuroSky):</strong> Monitors user "Attention" levels. The system only unlocks torque-assist when concentration exceeds 70%, preventing accidental movement.</li>
-                <li><strong>EMG Actuation (MyoWare):</strong> Reads pre-actuation muscle potentials from the bicep and forearm to drive motors with sub-20ms latency.</li>
+                <li><strong>Brain Control (Safety):</strong> A headset monitors your focus levels. The arm only activates when you are concentrating, preventing accidental movements.</li>
+                <li><strong>Muscle Control (Movement):</strong> Sensors on your arm detect the electrical signals your muscles make <em>before</em> you move. This allows the robot arm to move instantly with you.</li>
             </ul>
 
-            <div class="terminal-widget">
-                <div class="term-header">/// DIAGNOSTIC_BUS_01</div>
-                <div class="term-line">
-                    <span class="term-prompt">user@exo:~$</span>
-                    <span class="term-out">./calibrate_sensors --init</span>
-                </div>
-                <div class="term-line">
-                    <span class="term-out">[EEG_LINK] NeuroSky Headset: CONNECTED (Signal: 98%)</span>
-                </div>
-                <div class="term-line">
-                    <span class="term-out">[DATA] Attention Level: 72% >> SAFETY_LOCK_DISENGAGED</span>
-                </div>
-                <div class="term-line">
-                    <span class="term-out">[EMG_01] Bicep Sensor: DETECTED (Signal: 1.2mV)</span>
-                </div>
-                <div class="term-line">
-                    <span class="term-out">[SERVO_MAIN] Shoulder Torque: ACTIVE (Holding at 45deg)</span>
-                </div>
-            </div>
-
-            <h3>Development Roadmap</h3>
-            <p>Current fabrication is focused on the "Gauntlet" sub-assembly. We are utilizing <strong>MG90S Micro Servos</strong> for the finger tendons to refine the "Power Grip" algorithm before integrating the heavier shoulder lift mechanism.</p>
+            <h3>Current Progress</h3>
+            <p>We are currently building the "Gauntlet" (the hand section). We are using small, inexpensive servos and fishing line tendons to create a grip strong enough to crush a soda can, controlled entirely by flexing your forearm.</p>
         </div>
         
         <div class="sidebar">
             <div class="specs-box">
                 <h3>Technical Specs</h3>
                 <div class="spec-row"><span class="spec-label">CONTROLLER</span><span class="spec-val">Arduino Mega 2560</span></div>
-                <div class="spec-row"><span class="spec-label">PRIMARY INPUT</span><span class="spec-val">MyoWare v2.0 (EMG)</span></div>
-                <div class="spec-row"><span class="spec-label">SECONDARY INPUT</span><span class="spec-val">NeuroSky MindWave</span></div>
-                <div class="spec-row"><span class="spec-label">SHOULDER LIFT</span><span class="spec-val">2x 25kg High-Torque</span></div>
-                <div class="spec-row"><span class="spec-label">HAND ACTUATOR</span><span class="spec-val">5x MG90S Micro</span></div>
-                <div class="spec-row"><span class="spec-label">POWER</span><span class="spec-val">3S LiPo (11.1V)</span></div>
-                <div class="spec-row"><span class="spec-label">FRAME</span><span class="spec-val">PETG + Alum Bar</span></div>
+                <div class="spec-row"><span class="spec-label">PRIMARY SENSOR</span><span class="spec-val">MyoWare (Muscle)</span></div>
+                <div class="spec-row"><span class="spec-label">SAFETY SENSOR</span><span class="spec-val">NeuroSky (Brain)</span></div>
+                <div class="spec-row"><span class="spec-label">LIFT MOTORS</span><span class="spec-val">2x 25kg High-Torque</span></div>
+                <div class="spec-row"><span class="spec-label">HAND MOTORS</span><span class="spec-val">5x MG90S Micro</span></div>
+                <div class="spec-row"><span class="spec-label">POWER</span><span class="spec-val">3S LiPo Battery</span></div>
+                <div class="spec-row"><span class="spec-label">FRAME</span><span class="spec-val">PETG + Aluminium</span></div>
             </div>
         </div>
     </div>
