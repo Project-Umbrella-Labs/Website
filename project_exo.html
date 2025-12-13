@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atmospheric Drone | Project Umbrella</title>
+    <title>Exoskeleton | Project Umbrella</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* --- DARK THEME VARIABLES --- */
@@ -37,7 +37,12 @@
         
         /* Grid Background */
         body::before { 
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            content: ""; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
             background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
                               linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); 
             background-size: 50px 50px; 
@@ -50,7 +55,10 @@
             content: " "; 
             display: block; 
             position: fixed; 
-            top: 0; left: 0; bottom: 0; right: 0; 
+            top: 0; 
+            left: 0; 
+            bottom: 0; 
+            right: 0; 
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%); 
             background-size: 100% 4px; 
             z-index: -1; 
@@ -104,8 +112,9 @@
         
         .back-link:hover { color: var(--neon-green); }
 
-        /* --- HERO SECTIONS --- */
+        /* --- HERO SECTION --- */
         .project-hero { 
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1535378433864-48cf10419c5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1674&q=80'); 
             background-size: cover; 
             background-position: center; 
             min-height: 50vh; 
@@ -115,21 +124,9 @@
             text-align: center; 
             color: white; 
             border-bottom: 1px solid var(--border-color); 
-            position: relative;
             padding: 40px 5%;
         }
         
-        /* Version 2 Hero Image */
-        .hero-v2 { 
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/Drone.jpg'); 
-        }
-        
-        /* Version 1 Hero Image */
-        .hero-v1 { 
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('assets/Drone_Render.jpg'); 
-            border-top: 1px solid var(--neon-green); 
-        }
-
         .project-hero h1 { 
             font-size: 3.5rem; 
             margin-bottom: 10px; 
@@ -228,7 +225,7 @@
             grid-template-columns: 1fr 1fr; 
             gap: 40px; 
             border-top: 1px solid var(--border-color); 
-            margin-top: 0; 
+            margin-top: 60px; 
         }
         
         .footer-logo { 
@@ -380,72 +377,34 @@
         <a href="index.html" class="back-link">&larr; [ BACK_TO_BASE ]</a>
     </nav>
 
-    <div class="project-hero hero-v2">
+    <div class="project-hero">
         <div>
-            <p class="mono">STATUS: ACTIVE // ITERATION 2</p>
-            <h1>Atmospheric Drone Mk II</h1>
+            <p class="mono">STATUS: TESTING PHASE 1</p>
+            <h1>Exoskeletal Arm & Neural Interface</h1>
         </div>
     </div>
 
     <div class="content-wrapper">
         <div class="main-col">
-            <p class="mono">/// MK II OVERVIEW</p>
-            <h2>Current Mission Objectives</h2>
-            <p>The Mark II represents a significant leap in our autonomous capabilities. Focusing on high-efficiency flight paths and real-time edge computing, the Mk II frame is optimized for flight times exceeding 45 minutes while carrying the heavy compute payload required for computer vision.</p>
-            <p>Utilizing the <strong>Jetson Orin Nano (8GB)</strong>, the drone performs on-board image processing for crop health analysis and weather pattern recognition without reliance on ground station telemetry.</p>
-            <h3>Mk II Systems Integration</h3>
+            <p class="mono">/// OVERVIEW</p>
+            <h2>Human Augmentation</h2>
+            <p>The Exoskeletal Arm project aims to amplify human strength and endurance for industrial applications. By utilizing non-invasive Electromyography (EMG) sensors, the suit predicts user intent and actuates motors with less than 10ms of latency.</p>
+            <p>Current prototypes are fabricated from 7075 Aerospace Aluminum, providing a lightweight structure capable of lifting loads in excess of 50kg.</p>
+            <h3>Key Features</h3>
             <ul>
-                <li>Real-time NDVI mapping via Jetson AI edge computing.</li>
-                <li>High-efficiency power train using HobbyWing 65A ESCs.</li>
-                <li>Redundant navigation via Matek H7A3-SLIM flight controller.</li>
-                <li>Carbon Fiber reinforced arms for increased rigidity.</li>
+                <li>Signal processing via custom PCB neural network.</li>
+                <li>Haptic feedback loops for grip strength modulation.</li>
+                <li>Modular battery packs for 4-hour operational uptime.</li>
             </ul>
         </div>
         <div class="sidebar">
             <div class="specs-box">
-                <h3>Drone Specifications</h3>
-                <div class="spec-row"><span class="spec-label">FLIGHT CONTROLLER</span><span class="spec-val">Matek H7A3-SLIM</span></div>
-                <div class="spec-row"><span class="spec-label">ESC</span><span class="spec-val">HobbyWing XRotor 65A</span></div>
-                <div class="spec-row"><span class="spec-label">PROPELLERS</span><span class="spec-val">10X4.7 SF APC PROP</span></div>
-                <div class="spec-row"><span class="spec-label">MOTORS</span><span class="spec-val">iFlight Helion 10</span></div>
-                <div class="spec-row"><span class="spec-label">KV RATING</span><span class="spec-val">900KV</span></div>
-                <div class="spec-row"><span class="spec-label">BATTERY</span><span class="spec-val">iFlight Fullsend 10000mAh</span></div>
-                <div class="spec-row"><span class="spec-label">CUSTOM FRAME</span><span class="spec-val">ePLA-LW</span></div>
-                <h3 style="margin-top: 40px;">Sensor Relay Specifications</h3>
-                <div class="spec-row"><span class="spec-label">AI COMPUTER</span><span class="spec-val">Jetson Orin Nano 8GB</span></div>
-                <div class="spec-row"><span class="spec-label">MICROCONTROLLER</span><span class="spec-val">STM32-H743IIT6</span></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="project-hero hero-v1">
-        <div>
-            <p class="mono" style="color: #888;">STATUS: RETIRED // ITERATION 1</p>
-            <h1 style="color: #aaa;">Prototype Mk I</h1>
-        </div>
-    </div>
-
-    <div class="content-wrapper" style="background-color: #0d0d0d;">
-        <div class="main-col">
-            <p class="mono" style="color: #888;">/// MK I LEGACY DATA</p>
-            <h2>Initial Proof of Concept</h2>
-            <p style="color: #888;">The Mark I was the testbed for our initial propulsion theories. While it lacked the advanced AI processing capabilities of the Mark II, it provided crucial data regarding aerodynamic stress and battery thermal management.</p>
-            <p style="color: #888;">This unit is no longer flight-capable but serves as a reference point for chassis structural integrity.</p>
-            <h3>Mk I Key Learnings</h3>
-            <ul style="color: #888;">
-                <li>Identified thermal throttling issues in standard ESCs.</li>
-                <li>Validated the vertical takeoff thrust-to-weight ratios.</li>
-                <li>Established the baseline for our proprietary telemetry software.</li>
-            </ul>
-        </div>
-        <div class="sidebar">
-            <div class="specs-box" style="border-top: 4px solid #555;">
-                <h3 style="color:#aaa;">Mk I Legacy Specs</h3>
-                <div class="spec-row"><span class="spec-label">CONTROLLER</span><span class="spec-val" style="color:#888;">Pixhawk 4</span></div>
-                <div class="spec-row"><span class="spec-label">MOTORS</span><span class="spec-val" style="color:#888;">Generic 2205</span></div>
-                <div class="spec-row"><span class="spec-label">KV RATING</span><span class="spec-val" style="color:#888;">2300KV</span></div>
-                <div class="spec-row"><span class="spec-label">ESC</span><span class="spec-val" style="color:#888;">30A BLHeli_S</span></div>
-                <div class="spec-row"><span class="spec-label">COMPUTER</span><span class="spec-val" style="color:#888;">Raspberry Pi 4</span></div>
+                <h3>System Specs</h3>
+                <div class="spec-row"><span class="spec-label">MAX LOAD</span><span class="spec-val">50 KG</span></div>
+                <div class="spec-row"><span class="spec-label">ACTUATION</span><span class="spec-val">Linear Hydraulic</span></div>
+                <div class="spec-row"><span class="spec-label">MATERIAL</span><span class="spec-val">Alu 7075-T6</span></div>
+                <div class="spec-row"><span class="spec-label">INTERFACE</span><span class="spec-val">8-Channel EMG</span></div>
+                <div class="spec-row"><span class="spec-label">LATENCY</span><span class="spec-val">&lt; 10ms</span></div>
             </div>
         </div>
     </div>
