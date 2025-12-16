@@ -518,24 +518,29 @@
             <h3>Mk II Systems Integration</h3>
             <ul>
                 <li><strong>Real-time NDVI mapping</strong> via Jetson AI edge computing.</li>
-                <li><strong>High-efficiency power train</strong> using HobbyWing 65A ESCs.</li>
-                <li><strong>Redundant navigation</strong> via Matek H7A3-SLIM flight controller.</li>
+                <li><strong>High-efficiency power train</strong> using individual HolyBro Tekko32 F4 45A ESCs.</li>
+                <li><strong>Redundant navigation</strong> via Matek H743 Wing V3 Flight Controller.</li>
                 <li><strong>Carbon Fiber reinforced arms</strong> for increased rigidity.</li>
             </ul>
         </div>
         <div class="sidebar">
             <div class="specs-box">
                 <h3>Drone Specifications</h3>
-                <div class="spec-row"><span class="spec-label">FLIGHT CONTROLLER</span><span class="spec-val">Matek H7A3-SLIM</span></div>
-                <div class="spec-row"><span class="spec-label">ESC</span><span class="spec-val">HobbyWing XRotor 65A</span></div>
-                <div class="spec-row"><span class="spec-label">PROPELLERS</span><span class="spec-val">10X4.7 SF APC PROP</span></div>
-                <div class="spec-row"><span class="spec-label">MOTORS</span><span class="spec-val">iFlight Helion 10</span></div>
-                <div class="spec-row"><span class="spec-label">KV RATING</span><span class="spec-val">900KV</span></div>
+                <div class="spec-row"><span class="spec-label">FLIGHT CONTROLLER</span><span class="spec-val">Matek H743 Wing V3</span></div>
+                <div class="spec-row"><span class="spec-label">ESC</span><span class="spec-val">HolyBro Tekko32 F4 45A</span></div>
+                <div class="spec-row"><span class="spec-label">LIFT PROPELLERS</span><span class="spec-val">T-Motor Folding 15.2x5</span></div>
+                <div class="spec-row"><span class="spec-label">LIFT MOTORS</span><span class="spec-val">SunnySky V4006 320kv Brushless</span></div>
+                <div class="spec-row"><span class="spec-label">THRUST PROPELLER</span><span class="spec-val">T-Motor Folding 15.2x5</span></div>
+                <div class="spec-row"><span class="spec-label">THRUST MOTOR</span><span class="spec-val">Brotherhobby Avenger 2812 900kv</span></div>
+                <div class="spec-row"><span class="spec-label">GPS</span><span class="spec-val">CUAV NEO 3 Pro GPS</span></div>
+                <div class="spec-row"><span class="spec-label">AIRSPEED SENSOR</span><span class="spec-val">Matek Digital ASPD-DLVR</span></div>
+                <div class="spec-row"><span class="spec-label">CONTROL SERVOS</span><span class="spec-val">X12-508 Micro Digital Servo</span></div>
                 <div class="spec-row"><span class="spec-label">BATTERY</span><span class="spec-val">iFlight Fullsend 10000mAh</span></div>
                 <div class="spec-row"><span class="spec-label">CUSTOM FRAME</span><span class="spec-val">ePLA-LW</span></div>
-                <h3 style="margin-top: 40px;">Sensor Relay Specifications</h3>
+                <h3 style="margin-top: 40px;">Autonomous Control Specifications</h3>
                 <div class="spec-row"><span class="spec-label">AI COMPUTER</span><span class="spec-val">Jetson Orin Nano 8GB</span></div>
-                <div class="spec-row"><span class="spec-label">MICROCONTROLLER</span><span class="spec-val">STM32-H743IIT6</span></div>
+                <div class="spec-row"><span class="spec-label">MONOSCOPIC CAMERA</span><span class="spec-val">Arducam 12MP IMX477</span></div>
+                <div class="spec-row"><span class="spec-label">STEROSCOPIC CAMERA</span><span class="spec-val">1MPx2 OV9281 Stereoscopic</span></div>
             </div>
         </div>
     </div>
@@ -565,11 +570,17 @@
         <div class="sidebar">
             <div class="specs-box" style="border-top: 4px solid #555; background: var(--panel-grey); box-shadow: none;">
                 <h3 style="color:#aaa;">Mk I Legacy Specs</h3>
-                <div class="spec-row"><span class="spec-label">CONTROLLER</span><span class="spec-val" style="color:#888;">Pixhawk 4</span></div>
-                <div class="spec-row"><span class="spec-label">MOTORS</span><span class="spec-val" style="color:#888;">Generic 2205</span></div>
-                <div class="spec-row"><span class="spec-label">KV RATING</span><span class="spec-val" style="color:#888;">2300KV</span></div>
-                <div class="spec-row"><span class="spec-label">ESC</span><span class="spec-val" style="color:#888;">30A BLHeli_S</span></div>
-                <div class="spec-row"><span class="spec-label">COMPUTER</span><span class="spec-val" style="color:#888;">Raspberry Pi 4</span></div>
+                <div class="spec-row"><span class="spec-label">FLIGHT CONTROLLER</span><span class="spec-val" style="color:#888;">SpeedyBee F405 Mini</span></div>
+                <div class="spec-row"><span class="spec-label">ESC</span><span class="spec-val" style="color:#888;">35A Mini 4-in-1 BLHeliS</span></div>
+                <div class="spec-row"><span class="spec-label">MOTORS</span><span class="spec-val" style="color:#888;">Generic 3115 900KV 6S Brushless</span></div>
+                <div class="spec-row"><span class="spec-label">PROPELLER</span><span class="spec-val" style="color:#888;">Gemfan 1050</span></div>
+                <div class="spec-row"><span class="spec-label">BATTERY</span><span class="spec-val" style="color:#888;">OVONIC 100C 6S 1000mAh</span></div>
+                <div class="spec-row"><span class="spec-label">FRAME</span><span class="spec-val" style="color:#888;">ePLA-LW</span></div>
+                <h3 style="margin-top: 40px;">Sensor Relay Specifications</h3>
+                <div class="spec-row"><span class="spec-label">AI COMPUTER</span><span class="spec-val">Jetson Orin Nano 8GB</span></div>
+                <div class="spec-row"><span class="spec-label">MICROCONTROLLER</span><span class="spec-val" style="color:#888;">STM32-H743IIT6</span></div>
+                <div class="spec-row"><span class="spec-label">MONOSCOPIC CAMERA</span><span class="spec-val">Arducam 12MP IMX477</span></div>
+                <div class="spec-row"><span class="spec-label">STEROSCOPIC CAMERA</span><span class="spec-val">1MPx2 OV9281 Stereoscopic</span></div>
             </div>
         </div>
     </div>
@@ -590,3 +601,4 @@
     </footer>
 </body>
 </html>
+
